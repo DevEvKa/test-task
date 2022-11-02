@@ -133,7 +133,7 @@ body {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     padding: 1em;
-    grid-gap: 1.5em;
+    grid-gap: 0.4em;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -245,7 +245,7 @@ body {
 
 
 /*media queries for different screens*/
-@media (min-width: 630px) {
+@media (min-width: 640px) {
     html {
         font-size: 17px;
     }
@@ -255,18 +255,18 @@ body {
     }
 
     .cards {
-        -ms-grid-columns: 1fr 1.5em 1fr;
+        -ms-grid-columns: 1fr 0.4em 1fr;
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 965px) {
     html {
         font-size: 16px;
     }
 
     .cards {
-        -ms-grid-columns: 1fr 1.5em 1fr 1.5em 1fr;
+        -ms-grid-columns: 1fr 0.4em 1fr 0.4em 1fr;
         grid-template-columns: repeat(3, 1fr);
     }
 }
