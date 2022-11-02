@@ -1,10 +1,8 @@
 let requestUrl = 'https://jsonplaceholder.typicode.com/posts/?_start=0&_limit=7';
 
-
 const cardsContainer = document.querySelector('.cards');
 
-
-
+//create card item
 const createCard = (card) => `
 <div class="card">
                     <h4 class="card__title">${card.title}</h4>
@@ -16,19 +14,15 @@ const createCard = (card) => `
                 </div>
 `
 
+//add cards to card's container
 const fillCardsContainer = (cards) => {
-    console.log('fill', cards)
     cardsContainer.innerHTML = "";
     if (cards.length) {
         cards.forEach((card) => cardsContainer.innerHTML += createCard(card))
     }
 }
 
-
-
-
-
-//запрос на получение карточек
+//send request for getting card's array
 async function getCardsRequest(url) {
     cardsContainer.innerHTML = "";
     return await fetch(url, {
@@ -46,12 +40,23 @@ async function getCardsRequest(url) {
         }).catch(err => console.log(err))
 }
 
-//вызов при загрузке страницы
+//the first call when the application is loaded
 getCardsRequest(requestUrl);
 
 
+const filterCardsBtn = document.querySelector('.filter__button');
 
-//изменение цвета(выбор) карточки
+//filter cards according to their title and input value
+filterCardsBtn.addEventListener('click', () => {
+    let value = document.querySelector('.text__input').value;
+    if (value) {
+        requestUrl += `&title=${value}`;
+        getCardsRequest(requestUrl);
+    }
+})
+
+
+//change color of the checked/unchecked card
 const checkCard = () => {
 
     const cardCheckboxes = document.querySelectorAll('.checkbox__input');
@@ -67,18 +72,6 @@ const checkCard = () => {
         })
     })
 }
-
-const filterCardsBtn = document.querySelector('.filter__button');
-
-filterCardsBtn.addEventListener('click', () => {
-    let value = document.querySelector('.text__input').value;
-    requestUrl += `&title=${value}`;
-    getCardsRequest(requestUrl);
-})
-
-
-
-//https://jsonplaceholder.typicode.com/posts/?_start=0&_limit=7&title=eum et est occaecati
 
 
 
